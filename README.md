@@ -1,18 +1,18 @@
 ## TBC Analystics Test (Beer Advocate)
 
-Problem
+Problem<br>
 Can we predict beer ratings from features such as style, ABV and reviewer behaviour?
 
-Dataset
+Dataset<br>
 ~1.5M reviews from BeerAdvocate.
 
-Methods
+Methods<br>
 • exploratory analysis
 • feature engineering
 • regression models
 
 
-Tools
+Tools<br>
 Python, pandas, scikit-learn, matplotlib
 
 ----------------------------------------
