@@ -1,55 +1,180 @@
-## TBC Analystics Test (Beer Advocate)
+## Beer Review Analytics
 
-Problem<br>
-Can we predict beer ratings from features such as style, ABV and reviewer behaviour?
+**Exploratory data analysis, statistical modelling and machine learning using the BeerAdvocate dataset**
 
-Dataset<br>
-~1.5M reviews from BeerAdvocate.
+### Overview
 
-Methods<br>
-• exploratory analysis
-• feature engineering
-• regression models
+This project analyses approximately 1.5 million beer reviews from BeerAdvocate to investigate what drives customer ratings and how quantitative analysis can generate meaningful commercial insights.
+
+Using Python, SQL-style data manipulation, statistical analysis and machine learning, the project explores consumer preferences, product performance and the factors most strongly associated with highly rated beers.
+
+Although based on beer reviews, the analytical techniques are directly applicable to commercial analytics problems involving customer behaviour, product performance, recommendation systems and business intelligence.
+
+### Objectives
+
+The project investigates questions including:
+
+- Which breweries consistently produce the highest-rated beers?
+- Which beer styles receive the best customer reviews?
+- What characteristics (taste, aroma, appearance or palate) most influence overall ratings?
+- How can products be ranked fairly when some have thousands of reviews while others have only a handful?
+- Can overall customer ratings be predicted from product characteristics and reviewer behaviour?
+
+### Dataset
+
+**Source:** BeerAdvocate
+
+- Approximately 1.5 million reviews
+- Thousands of breweries
+- Thousands of beer styles
+- Multiple numerical and categorical variables
+
+Examples include:
+
+- Beer style
+- Alcohol by volume (ABV)
+- Brewery
+- Aroma rating
+- Taste rating
+- Appearance rating
+- Palate rating
+- Overall rating
+- Reviewer information
+- Review date
+
+ ![](heatmap.png)
+
+### Analytical Workflow
+
+The project follows a typical data analytics pipeline:
+
+**Data preparation**
+- Data cleaning
+- Missing value handling
+- Feature selection
+- Data validation
+- Exploratory statistics
+
+**Exploratory Data Analysis**
+
+Investigation of:
+
+- rating distributions
+- brewery performance
+- beer styles
+- alcohol strength
+- reviewer behaviour
+- correlations between review metrics
+
+**Statistical Analysis**
+
+Application of:
+
+- confidence intervals
+- weighted rankings
+- correlation analysis
+- feature importance
+- uncertainty quantification
+
+Rather than ranking beers using simple averages, confidence intervals are used to account for differing review counts, reducing bias from products with very few reviews.
+
+**Predictive Modelling**
+
+Regression models were developed to investigate whether overall ratings could be predicted from:
+
+- beer characteristics
+- review sub-scores
+- reviewer behaviour
+
+### Key Findings
+**Strongest brewery by ABV**
+
+Schorschbräu produces the strongest individual beer in the dataset (57.7% ABV) and also has the highest average alcohol content across its products.
+
+**Best-rated beers**
+
+Products were ranked using confidence intervals rather than simple averages to provide statistically robust recommendations.
+
+Example recommendations include:
+
+| Beer                        | Style           |
+| --------------------------- | --------------- |
+| Rare D.O.S.                 | Imperial Stout  |
+| Dirty Horse                 | Lambic          |
+| Southampton Berliner Weisse | Berliner Weisse |
+
+**What matters most?**
+
+Correlation analysis shows that:
+
+- Taste
+- Palate
+
+are the strongest predictors of overall customer ratings.
+
+Aroma and appearance remain important but contribute less to the final score.
+
+**Consumer Preference**
+
+The project also allows recommendations to be tailored according to reviewer preferences.
+
+For example:
+
+"If a customer values aroma and appearance most, which beer styles should they try?"
+
+### Technologies
+- Python
+- pandas
+- NumPy
+- scikit-learn
+- matplotlib
+- Jupyter Notebook
+
+### Skills Demonstrated
+- Exploratory Data Analysis (EDA)
+- Statistical analysis
+- Feature engineering
+- Regression modelling
+- Data visualisation
+- Ranking under uncertainty
+- Consumer behaviour analysis
+- Product performance analysis
+- Business insight generation
+
+### Business Relevance
+
+Although based on beer reviews, the techniques demonstrated here are directly transferable to commercial analytics roles.
+
+The project illustrates how large datasets can be used to:
+
+- identify high-performing products
+- understand customer preferences
+- evaluate product quality
+- support evidence-based decision making
+- quantify uncertainty
+- communicate analytical findings through visualisation
+
+These are common analytical tasks across FMCG, retail, marketing, product analytics and business intelligence.
+
+### Future Improvements
+
+Potential extensions include:
+
+- Interactive Plotly Dash dashboard
+- Recommendation engine
+- Customer segmentation
+- Sentiment analysis of review text
+- Time-series analysis of changing preferences
+- Classification models for beer style prediction
+- Advanced explainable AI (SHAP values)
 
 
-Tools<br>
-Python, pandas, scikit-learn, matplotlib
+### Author
 
-----------------------------------------
+**Stephen Curran, PhD**
 
-**From [How to Hire and Test for Data Skills: a One-Size-Fits-All Interview Kit](https://tcbanalytics.com/2016/01/29/how-to-hire-and-test-for-data-skills-a-one-size-fits-all-interview-kit/)**
+Data Analyst | Python | SQL | Statistics | Data Visualisation
 
-"In an effort to make the interviewing experience a bit more fun, we use a dataset that involves beer. This dataset consists of 1.5 million beer reviews from Beer Advocate. It is an ideal dataset for testing candidates since it is too large to fit into Excel, but small enough to process on a single laptop in Python or R. We prefer that candidates complete the test in either Python or R, and generally if they are hesitant about using or trying to learn either of these languages, that should signal a red flag.
+GitHub: https://github.com/steviecurran
 
-- Which brewery produces the strongest beers by ABV%?
-  Schorschbräu with a beauty at 57.7%. This brewery also has highest average strength (19.2%), followd by Shoes Brewery at 15.2%.
-  
-- If you had to pick 3 beers to recommend using only this data, which would you pick?
-  Doing this my the maximum average overall score and the averaged maximum of the specific factors and ranking by the lower range of the confidence 
-  interval (to wight by mumber of reviews), for all beers:
-
-  | beer_id   | beer_name  | beer_style | beer_abv  |rewery_id  | rewery_name | review_overall | +/- | review_others |+/-| No. reviews|
-  | :---       | :---      | :---        | :---     | :---       | :---        | :---          | :--- | :---         | :--- | :---    |
-  |63649|Rare D.O.S.| American Double/Imperial Stout| NaN |22147| Peg's Cantina & Brewpub/Cycle Brewing|4.848485 |0.091719 |4.719697 |0.073459|33|  
-  44910|Dirty Horse|Lambic - Unblended|7.0|15237|De Struise Brouwers|4.820513|0.092892|0.589744|0.081014|39|
-  8626| Southampton Berliner Weisse|Berliner Weissbier|2.0|1628|Southampton Publick House|4.768293|0.092306|4.371951 |0.100824 |41|  
-
-  This is for all beers at 95% confidence. Both the beer style and confidence level can be altered via the dropdown and the slider.
-
-- Which of the factors (aroma, taste, appearance, palette) are most important in determining the overall quality of a beer?
-
-  Taste and palate
-  
-  ![](https://raw.githubusercontent.com/steviecurran/beer-reviews/refs/heads/main/heatmap.png)
-
-- Lastly, if I typically enjoy a beer due to its aroma and appearance, which beer style should I try?"
-
-  | beer_id   | beer_name  | beer_style | beer_abv  |rewery_id  | rewery_name | review_aroma | +/- | review_appearance|+/-| No. reviews|
-  | :---       | :---      | :---        | :---     | :---       | :---        | :---          | :--- | :---         | :--- | :---    |
-  |21690 |Pliny The Younger|American Double/Imperial IPA|11.0|63 |Russian River Brewing Company |4.723770|0.028002|4.482787|0.032832|610|  
-  |42349|Vanilla Bean Aged Dark Lord|Russian Imperial Stout|13.0|26|Three Floyds Brewing Co. & Brewpub| 4.717105|0.064031|4.450658|0.066032|152|  
-  |63649|Rare D.O.S.|American Double/ mperial Stout|NaN|22147|Peg's Cantina & Brewpub/ ycle Brewing|4.757576|0.107152|4.469697|0.096254|33|  
-
-  Again for all, although style can be selected from a drop down menus, as well as the characeristics.
-
-If the remote data are taking too long to load, try the notebook at [Kaggle](https://www.kaggle.com/code/steviemooncat/beer-reviews)
+LinkedIn: https://www.linkedin.com/in/dr-stephen-curran
